@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Most Common Colors</title>
+</head>
+<body>
+    <h1>Most Common Colors</h1>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept=".jpg, .jpeg, .png, .gif">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if image_path %}
+        <img src="{{ image_path }}" alt="Uploaded Image" width="400">
+
+        <h2>Most Common Colors:</h2>
+        <ul>
+            {% for color, count in colors %}
+                <li style="background-color: rgb({{ color[0] }}, {{ color[1] }}, {{ color[2] }});">
+                    RGB: {{ color }}, Count: {{ count }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
